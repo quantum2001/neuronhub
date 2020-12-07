@@ -6,18 +6,22 @@
 ?>
 <div class="sent">sent</div>
 <div class="not-sent">not sent</div>
+<audio id="send-audio">
+	<source src="sounds/send.wav">
+</audio>
+<audio id="receive-audio">
+	<source src="sounds/receive.wav">
+</audio>
 
-<div class="chat-container">
+<div class="chat-container" id="chat-container">
 	<div class="chat-messages" id="chat-messages">
 
 		<div class="chat-heading">
-			<h3><span>Physics</span> Students Nigeria</h3>
+			<h3><span><?php echo $_SESSION['department']; ?></span> Students Nigeria</h3>
 		</div>
+		
 
-		<div id="message-container">
-
-			//
-			//
+		<div id="message-container" >
 
 		</div>
 
@@ -33,10 +37,10 @@
 		<!-- message container -->
 
 	<div class="send-message">
-		<form method="post" >
+		<form method="post" onsubmit="preventDefaultSubmit(event)">
 			<div class="message-container">
 				<div class="message-box">
-					<input type="text" name="message" autocomplete="off" onkeyup="showSend()" placeholder="Message" id="chat-message-box">
+					<input type="text" name="message" autocomplete="off" onkeyup="showSend()" onkeydown="sendMessageUsingEnter(event)" placeholder="Message" id="chat-message-box">
 				</div>
 				<div class="emoji" onclick="showEmoji()">
 					<i class="fa fa-smile-o"></i>
@@ -97,8 +101,9 @@
 		</div>
 	
 	</div>
-
+	<script id="what"></script>
 <script src="accountjs/chat.js"></script>
+
 
 <?php
 	require_once "footer.acc.php";

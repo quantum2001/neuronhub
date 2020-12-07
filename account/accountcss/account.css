@@ -465,13 +465,15 @@ footer{
 	text-align: center;
 	margin-top: 10px;
 }
-.profile-user-details h2{
+.profile-container h2{
 	color: #222;
 	text-shadow: 0 0 1px #fff;
 	line-height: 40px;
+	text-align: center;
+	padding-bottom: 20px;
 }
 @media screen and (max-width: 500px){
-	.profile-user-details h2{
+	.profile-container h2{
 		font-size: 16px
 	}
 	.user-detail p{
@@ -572,14 +574,10 @@ footer{
 	background-color: #fff;
 	display: flex;
 	align-items: center;
-	text-align: center;
 	justify-content: center;
 	margin: 4px auto;
 	position: relative;
 	overflow: hidden;
-}
-.university p{
-	margin-left: 54px;
 }
 .details-arrange{
 	display: flex;
@@ -603,6 +601,7 @@ footer{
 @media screen and (max-width: 900px){
 	.university{
 		width: 80%;
+		text-align: center;
 	}
 	.details-arrange{
 		flex-direction: column;
@@ -617,9 +616,7 @@ footer{
 	}
 }
 
-.user-detail p{
-	margin-left: 54px;
-}
+
 .detail-icon{
 	width: 50px;
 	height: 100%;

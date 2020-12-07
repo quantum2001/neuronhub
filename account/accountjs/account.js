@@ -43,23 +43,9 @@ buttons.forEach(btn => {
 })
 
 
-var chatMessges = document.getElementById('chat-messages');
-var chatHeight = chatMessges.scrollHeight;
-chatMessges.scrollTo(0, chatHeight);
 
 //chat js
 
-function loadMessages(){
-	let xmlhttp = new XMLHttpRequest();
-	xmlhttp.onreadystatechange = function() {
-		if(this.readyState == 4 && this.status == 200){
-			document.getElementById('message-container').innerHTML += this.responseText;
-		}
-	}
-	xmlhttp.open('get', 'message.php?q="loadmessages"', true);
-	xmlhttp.send();
-
-}
 
 
 function showEmoji(){

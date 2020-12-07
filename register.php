@@ -21,6 +21,8 @@ if (isset($_SESSION['user_id'])) {
 	if (isset($_GET['error'])) {
 		if($_GET['error'] == "usernametaken"){
 			echo '<h2 style="color:red; text-align:center;">Username Taken</h2>';
+		} else if($_GET['error'] == "passworddoesnotmatch") {
+			echo '<h2 style="color:red; text-align:center;">Password Does Not Match</h2>';
 		} else {
 			echo '<h2 style="color:red; text-align:center;">Email Taken</h2>';
 		}
@@ -48,7 +50,7 @@ if (isset($_SESSION['user_id'])) {
 
 		<div class="reg-input-list">
 		<label>Username</label><br>
-		<input onkeyup="checkInput(this)" type="text" name="username" class="register-input" value="' . $username . '" placeholder="Username" pattern="^[a-zA-Z0-9]{2,}$" title="Username should be atleast 8" required>
+		<input onkeyup="checkInput(this)" type="text" name="username" class="register-input" value="' . $username . '" placeholder="Username" pattern="^[a-zA-Z0-9]{2,}$" title="Username should be atleast 2" required>
 		<label id="username" style="color: red; font-size: 12px;">
 		</div>
 

@@ -34,6 +34,7 @@ if(isset($_POST['login'])){
                 $_SESSION['address'] = $row['user_address'];
                 $_SESSION['username'] = $row['user_display_name'];
                 $_SESSION['phone_no'] = $row['user_phone_no'];
+                $_SESSION['last_message'] = $row['user_last_message'];
 
                 header('Location: ../account/home.php');
             }

@@ -2,11 +2,11 @@
 	require_once "includes/dbh.acc.php";
 
 	if(isset($_GET['message'])){
-		$username = $_GET['name'];
-		$image = $_GET['image'];
-		$department = $_GET['department'];
-        $university = $_GET['university'];
-        $message = $_GET['message'];
+		$username = mysqli_real_escape_string($conn, $_GET['name']);
+		$image = mysqli_real_escape_string($conn, $_GET['image']);
+		$department = mysqli_real_escape_string($conn, $_GET['department']);
+        $university = mysqli_real_escape_string($conn, $_GET['university']);
+        $message = mysqli_real_escape_string($conn, $_GET['message']);
 
 		$sql = "INSERT INTO messages (
     		message_sender_username,

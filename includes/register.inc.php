@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include_once ("dbh.php");
+require_once "../account/includes/dbh.acc.php";
 
 if(isset($_POST['register'])){
     $firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
@@ -11,12 +12,18 @@ if(isset($_POST['register'])){
     $department = mysqli_real_escape_string($conn, $_POST['department']);
     $phoneno = mysqli_real_escape_string($conn, $_POST['phone']);
     $address = mysqli_real_escape_string($conn, $_POST['address']);
+    $firstpassword = mysqli_real_escape_string($conn, $_POST['password']);
     $password = mysqli_real_escape_string($conn, $_POST['confirm-password']);
 
-    $sql = "SELECT * FROM users WHERE user_display_name = '$username'";
-    $result = mysqli_query($conn, $sql);
-    $numrow = mysqli_num_rows($result);
-    if($numrow > 0){
+    
+    if($firstpassword !== $password){
+        header("Location: ../register.php?error=passworddoesnotmatch");
+        exit();
+    } else {
+        $sql = "SELECT * FROM users WHERE user_display_name = '$username'";
+        $result = mysqli_query($conn, $sql);
+        $numrow = mysqli_num_rows($result);
+        if($numrow > 0){
         header("Location: ../register.php?error=usernametaken");
         exit();
     } else {
@@ -24,9 +31,14 @@ if(isset($_POST['register'])){
         $result = mysqli_query($conn, $sql);
         $numrow = mysqli_num_rows($result);
         if($numrow > 0){
-            header("Location: register.php?error=emailtaken");
+            header("Location: ../register.php?error=email taken");
             exit();
         } else {
+            $sql ="SELECT * FROM( SELECT * FROM messages WHERE message_group = '$department' ORDER BY message_id DESC LIMIT 10) sub ORDER BY message_id ASC LIMIT 1";
+            $result = mysqli_query($conn, $sql);
+            $message = mysqli_fetch_assoc($result);
+            $lastmessageid = $message['message_id'];
+
             $hashedpassword = password_hash($password, PASSWORD_DEFAULT);
             $verification_code = bin2hex(random_bytes(16));
             $sql = "INSERT INTO users(
@@ -42,7 +54,8 @@ if(isset($_POST['register'])){
                 user_verification,
                 user_image,
                 user_verification_code,
-                user_status
+                user_status,
+                user_last_message
                  ) 
                 VALUES (
                 '$firstname',
@@ -57,7 +70,8 @@ if(isset($_POST['register'])){
                 'not verified',
                 '../images/buysell.jpg',
                 '$verification_code',
-                'online'
+                'online',
+                '$lastmessageid'
                 )";
             $result = mysqli_query($conn, $sql);
             if($result){
@@ -76,6 +90,7 @@ if(isset($_POST['register'])){
                     $_SESSION['address'] = $row['user_address'];
                     $_SESSION['username'] = $row['user_display_name'];
                     $_SESSION['phone_no'] = $row['user_phone_no'];
+                    $_SESSION['last_message'] = $row['user_last_message'];
 
                     header('Location: ../account/home.php');
 
@@ -90,7 +105,8 @@ if(isset($_POST['register'])){
         }
     }
 
-    
+}  
+
 } else {
     echo "<h2 style='color:red; text-align:center'>Invalid Gateway</h2>";
 }

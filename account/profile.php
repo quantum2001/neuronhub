@@ -9,20 +9,20 @@
 		<img src="../images/group.jpeg" height="100%" width="100%">
 	</div>
 	<div class="profile-user-details">
-		<h2>Samfemiayo123</h2>
+		<h2><?php echo $_SESSION['username']?></h2>
 		<div class="university">
-			<div class="detail-icon"><i class="fa fa-university"></i></div><p>Federal University of Technology Minna</p>
+			<div class="detail-icon"><i class="fa fa-university"></i></div><p><?php echo $_SESSION['university'] ?></p>
 		</div>
 		<div class="details-arrange">
-			<div class="user-detail"><div class="detail-icon"><i class="fa fa-user"></i></div><p>Samuel Lawal</p></div>
-			<div class="user-detail"><div class="detail-icon"><i class="fa fa-id-card"></i></div><p>Physics</p></div>
+			<div class="user-detail"><div class="detail-icon"><i class="fa fa-user"></i></div><p><?php echo $_SESSION['firstname'] . " " . $_SESSION['lastname']?></p></div>
+			<div class="user-detail"><div class="detail-icon"><i class="fa fa-id-card"></i></div><p><?php echo $_SESSION['department'] ?></p></div>
 		</div>
 		<div class="details-arrange">
-			<div class="user-detail"><div class="detail-icon"><i class="fa fa-vcard-o"></i></div><p>No12. bosso campus, Minna, Niger State. </p></div>
-			<div class="user-detail"><div class="detail-icon"><i class="fa fa-phone"></i></div><p>  08067235346</p></div>
+			<div class="user-detail"><div class="detail-icon"><i class="fa fa-vcard-o"></i></div><p><?php echo $_SESSION['address']?> </p></div>
+			<div class="user-detail"><div class="detail-icon"><i class="fa fa-phone"></i></div><p>  <?php echo $_SESSION['phone_no']?></p></div>
 		</div>
 		<div class="details-arrange">
-			<div class="user-detail"><div class="detail-icon"><i class="fa fa-envelope"></i></div><p>samuellawal1979@gmail.com</p></div>
+			<div class="user-detail"><div class="detail-icon"><i class="fa fa-envelope"></i></div><p><?php echo $_SESSION['email']?></p></div>
 		</div>
 	</div>
 	<div class="edit-profile-container"><button class="edit-profile">Edit Profile <i class="fa fa-edit"></i></button></div>

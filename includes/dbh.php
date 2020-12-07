@@ -25,7 +25,8 @@ if(mysqli_query($conn, $sql)){
 	user_address text NOT NULL,
 	user_verification enum('not verified', 'verified') NOT NULL,
 	user_image varchar(256) NOT NULL,
-	user_verification_code varchar(256)
+	user_verification_code varchar(256),
+	user_last_message int(30)
 	)";
 	if(mysqli_query($conn, $sql)){
 		echo "";

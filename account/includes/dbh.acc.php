@@ -36,5 +36,4 @@ $sql = "CREATE TABLE IF NOT EXISTS messages(
 mysqli_query($conn, $sql);
 
 
-
 ?>
